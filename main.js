@@ -61,12 +61,21 @@ colaList.forEach(item => {
 })
 
 
+function click () {
+  
+let clickNum  = 1;
+return(clickNum++);
+}
 
 
 //콜라버튼 눌렀을때 리스트에 추가
-displayCola.addEventListener('click', () => {
+displayCola.addEventListener('click', (e) => {
+  if(e.target.tagName == 'LI'){
+    const clickedCola = e.target;
+    const clickedColaName = clickedCola.querySelector('.tit-item').innerText;
+    const clickedColaImg = clickedCola.querySelector('.img-item').src;
 
-  for(let i = 0; i<colaList.length; i++){
+
     const colaLi = document.createElement("li");
     const button = document.createElement('button');
     const image = document.createElement('img');
@@ -75,51 +84,77 @@ displayCola.addEventListener('click', () => {
   
     button.className ="btn-staged";
     image.className = "img-item";
-    image.src = colaList[i]["image"]
+    image.src = clickedColaImg;
     colaName.className = "txt-item";
-    colaName.innerText = colaList[i]["name"]
+    colaName.innerText = clickedColaName;
     numCount.className = "num-counter";
-    numCount.innerText = `${i}`  //클릭수로 변경
+    numCount.innerText = click();  
 
-    const colaitem = colaList[i];
-
-    if(colaitem["name"]=="Original Cola"){
-      selectCola.append(colaLi);
-      colaLi.append(button);
-      button.append(image,colaName,numCount);
-      if(colaitem["name"]=="Violet Cola"){
-        selectCola.append(colaLi);
+    selectCola.append(colaLi);
         colaLi.append(button);
         button.append(image,colaName,numCount);
-        if(colaitem["name"]=="Yellow Cola"){
-          selectCola.append(colaLi);
-          colaLi.append(button);
-          button.append(image,colaName,numCount);
-          if(colaitem["name"]=="Cool Cola"){
-            selectCola.append(colaLi);
-            colaLi.append(button);
-            button.append(image,colaName,numCount);
-            if(colaitem["name"]=="Green Cola"){
-              selectCola.append(colaLi);
-              colaLi.append(button);
-              button.append(image,colaName,numCount);
-              if(colaitem["name"]=="Orange Cola"){
-                selectCola.append(colaLi);
-                colaLi.append(button);
-                button.append(image,colaName,numCount);
-              }
-            }
-          }
-        }
-      }
-    }
-
-     
-
-
-
   }
+//클릭한거 추출 e.target
+  // for(let i = 0; i<colaList.length; i++){
+  //   const colaLi = document.createElement("li");
+  //   const button = document.createElement('button');
+  //   const image = document.createElement('img');
+  //   const colaName = document.createElement('strong');
+  //   const numCount = document.createElement("span");
+  
+  //   button.className ="btn-staged";
+  //   image.className = "img-item";
+  //   image.src = colaList[i]["image"]
+  //   colaName.className = "txt-item";
+  //   colaName.innerText = colaList[i]["name"]
+  //   numCount.className = "num-counter";
+  //   numCount.innerText = `${i}`  //클릭수 함수만들어서  바꿀예정
     
+  //   let colaitem = colaList[i];
+  //   console.log(colaList[i])
+  //   if(e.target=="Original Cola"){  
+  //     selectCola.append(colaLi);
+  //     colaLi.append(button);
+  //     button.append(image,colaName,numCount);
+  //     break;
+  //   }
+  //   else if(colaitem["name"]=="Violet Cola"){
+  //     selectCola.append(colaLi);
+  //     colaLi.append(button);
+  //     button.append(image,colaName,numCount);
+  //     break;
+  //   }
+  //   else if(colaitem["name"]=="Yellow Cola"){
+  //     selectCola.append(colaLi);
+  //     colaLi.append(button);
+  //     button.append(image,colaName,numCount);
+  //     break;
+  //   }
+  //   else if(colaitem["name"]=="Cool Cola"){
+  //     selectCola.append(colaLi);
+  //     colaLi.append(button);
+  //     button.append(image,colaName,numCount);
+  //     break;
+  //   }
+  //   else if(colaitem["name"]=="Green Cola"){
+  //     selectCola.append(colaLi);
+  //     colaLi.append(button);
+  //     button.append(image,colaName,numCount);
+  //     break;
+  //   }
+  //   else if(colaitem["name"]=="Orange Cola"){
+  //     selectCola.append(colaLi);
+  //     colaLi.append(button);
+  //     button.append(image,colaName,numCount);
+  //     break;
+  //   }
+  // }
+    //       i 첫빠따가 무조건 여기부터 들림. 맞다면 break때문에 종료됨 -> 첫빠따인 original만 나옴.  
+    //    근데 break없으면 i=1부터 6까지 다돌기때문에 모든콜라가 다 추가됨...ㅠ 
+    //    콜라순서를 거꾸로해도 안됨. 
+    // if문을 쓰는게 맞는가?
+    // else if말고 if끝나기전에 if문을 넣는식으로 넣어봐도 안됨.
+  
 })
 
 // 입금하기관련 명령어
