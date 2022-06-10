@@ -61,101 +61,48 @@ colaList.forEach(item => {
 })
 
 
-function click () {
-  
-let clickNum  = 1;
-return(clickNum++);
-}
 
+const numCount = document.createElement("span");
+numCount.innerText = 1;  
 
 //콜라버튼 눌렀을때 리스트에 추가
 displayCola.addEventListener('click', (e) => {
-  if(e.target.tagName == 'LI'){
+
     const clickedCola = e.target;
     const clickedColaName = clickedCola.querySelector('.tit-item').innerText;
     const clickedColaImg = clickedCola.querySelector('.img-item').src;
-
-
     const colaLi = document.createElement("li");
     const button = document.createElement('button');
     const image = document.createElement('img');
     const colaName = document.createElement('strong');
-    const numCount = document.createElement("span");
-  
+
     button.className ="btn-staged";
     image.className = "img-item";
     image.src = clickedColaImg;
     colaName.className = "txt-item";
     colaName.innerText = clickedColaName;
     numCount.className = "num-counter";
-    numCount.innerText = click();  
 
-    selectCola.append(colaLi);
-        colaLi.append(button);
-        button.append(image,colaName,numCount);
-  }
-//클릭한거 추출 e.target
-  // for(let i = 0; i<colaList.length; i++){
-  //   const colaLi = document.createElement("li");
-  //   const button = document.createElement('button');
-  //   const image = document.createElement('img');
-  //   const colaName = document.createElement('strong');
-  //   const numCount = document.createElement("span");
-  
-  //   button.className ="btn-staged";
-  //   image.className = "img-item";
-  //   image.src = colaList[i]["image"]
-  //   colaName.className = "txt-item";
-  //   colaName.innerText = colaList[i]["name"]
-  //   numCount.className = "num-counter";
-  //   numCount.innerText = `${i}`  //클릭수 함수만들어서  바꿀예정
+  if(e.target.tagName == 'LI'){
+    if(e.target.querySelector('.tit-item').innerText =="Original Cola"){
+
+      selectCola.append(colaLi);
+      colaLi.append(button);
+      button.append(image,colaName,numCount);}
     
-  //   let colaitem = colaList[i];
-  //   console.log(colaList[i])
-  //   if(e.target=="Original Cola"){  
-  //     selectCola.append(colaLi);
-  //     colaLi.append(button);
-  //     button.append(image,colaName,numCount);
-  //     break;
-  //   }
-  //   else if(colaitem["name"]=="Violet Cola"){
-  //     selectCola.append(colaLi);
-  //     colaLi.append(button);
-  //     button.append(image,colaName,numCount);
-  //     break;
-  //   }
-  //   else if(colaitem["name"]=="Yellow Cola"){
-  //     selectCola.append(colaLi);
-  //     colaLi.append(button);
-  //     button.append(image,colaName,numCount);
-  //     break;
-  //   }
-  //   else if(colaitem["name"]=="Cool Cola"){
-  //     selectCola.append(colaLi);
-  //     colaLi.append(button);
-  //     button.append(image,colaName,numCount);
-  //     break;
-  //   }
-  //   else if(colaitem["name"]=="Green Cola"){
-  //     selectCola.append(colaLi);
-  //     colaLi.append(button);
-  //     button.append(image,colaName,numCount);
-  //     break;
-  //   }
-  //   else if(colaitem["name"]=="Orange Cola"){
-  //     selectCola.append(colaLi);
-  //     colaLi.append(button);
-  //     button.append(image,colaName,numCount);
-  //     break;
-  //   }
-  // }
-    //       i 첫빠따가 무조건 여기부터 들림. 맞다면 break때문에 종료됨 -> 첫빠따인 original만 나옴.  
-    //    근데 break없으면 i=1부터 6까지 다돌기때문에 모든콜라가 다 추가됨...ㅠ 
-    //    콜라순서를 거꾸로해도 안됨. 
-    // if문을 쓰는게 맞는가?
-    // else if말고 if끝나기전에 if문을 넣는식으로 넣어봐도 안됨.
-  
-})
+    else{
+      numCount.innerText++
+    }
+
+    // LI이고 카트에 담기지 않았다면 카트에 항목을 생성한다. 
+    // (if문안에 if문? 담기지 않았다면을 써야하니까..)
+    // 담겨있지 않다면 항목을 생성하지않고, 이미 담겨진 항목의 카운트만 늘린다.
+      // (if문안에 else if? 만약 담겨있다면을 써야하니까)
+    // 
+}})
+    
+
+
 
 // 입금하기관련 명령어
 const deposit = document.querySelector('.inp-put');  // 입금액 입력 input
